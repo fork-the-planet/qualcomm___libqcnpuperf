@@ -52,6 +52,11 @@ make -j$(nproc)
 ```bash
 sudo make install
 ```
+### Building without the ncurses sample
+If you don't want the sample binary:
+```bash
+cmake -DQCNPU_PERF_BUILD_TUI=OFF ..
+```
 
 ## Runtime Notes
 Ensure FastRPC is available:
