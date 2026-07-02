@@ -36,8 +36,11 @@
 #include "qcom_dsp.h"
 #include "qcom_dsp_priv.h"
 #include "dspquery_stub.h"
+#include "remote.h"
+#include "rpcmem.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 static void get_full_uri_info(const char *uri, char *full_uri, int size,
                               enum DspDomainId domain_id)
@@ -105,6 +108,26 @@ struct sysmon_query_prof_data *qcom_dsp_get_prof_data(struct qcom_dsp_ctx *ctx,
                                        sizeof(struct sysmon_query_prof_data),
                                        no_metrics, 0);
     return ret == 0 ? ctx->prof_data : NULL;
+}
+
+float qcom_dsp_prof_get_q6_utilization(const struct sysmon_query_prof_data *data)
+{
+    return data ? data->q6_utilization : 0.0f;
+}
+
+unsigned int qcom_dsp_prof_get_q6_clock(const struct sysmon_query_prof_data *data)
+{
+    return data ? data->q6_clock : 0;
+}
+
+float qcom_dsp_prof_get_hvx_utilization(const struct sysmon_query_prof_data *data)
+{
+    return data ? data->hvx_utilization : 0.0f;
+}
+
+float qcom_dsp_prof_get_hmx_utilization(const struct sysmon_query_prof_data *data)
+{
+    return data ? data->hmx_utilization : 0.0f;
 }
 
 void qcom_dsp_close(struct qcom_dsp_ctx *ctx)

@@ -40,9 +40,26 @@
  * remote_handle64 is typedef uint64_t in remote.h; stored as uint64_t here
  * to keep the type explicit.
  */
+struct sysmon_query_prof_data {
+    float        q6_utilization;   /* avg effective q6 clock / max q6 clock (%) */
+    unsigned int q6_clock;         /* avg q6 clock (KHz) */
+    float        reserved0;
+    float        hvx_utilization;  /* avg HVX utilization / max q6 clock (%) */
+    float        hmx_utilization;  /* avg HMX utilization / max q6 clock (%) */
+    float        reserved1;
+    float        reserved2;
+    float        reserved3;
+    float        reserved4;
+    float        reserved5;
+    float        reserved6;
+    float        reserved7;
+    float        reserved8;
+    float        reserved9;
+};
+
 struct qcom_dsp_ctx {
-    enum DspDomainId            domain_id;
-    uint64_t                    h;         /* remote_handle64 */
+    enum DspDomainId              domain_id;
+    uint64_t                      h;         /* remote_handle64 */
     struct sysmon_query_prof_data *prof_data;
 };
 

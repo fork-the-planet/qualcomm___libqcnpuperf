@@ -28,6 +28,7 @@
 */
 
 #include "qcom_dsp.h"
+#include <stdlib.h>
 #include <unistd.h>
 #include <ncurses.h>
 
@@ -68,10 +69,10 @@ int main(int argc, char *argv[])
 		}
 
 		mvprintw(0, 0, "----------------- %s Stats---------------------\n", domain_to_str(DSP_NPU0));
-		mvprintw(1, 0, "Q6 Utilization        : %.2f %%\n", data->q6_utilization);
-		mvprintw(2, 0, "Q6 Clock              : %u KHz\n", data->q6_clock);
-		mvprintw(3, 0, "HVX Utilization       : %.2f %%\n", data->hvx_utilization);
-		mvprintw(4, 0, "HMX Utiliziation       : %.2f %%\n", data->hmx_utilization);
+		mvprintw(1, 0, "Q6 Utilization        : %.2f %%\n", qcom_dsp_prof_get_q6_utilization(data));
+		mvprintw(2, 0, "Q6 Clock              : %u KHz\n",  qcom_dsp_prof_get_q6_clock(data));
+		mvprintw(3, 0, "HVX Utilization       : %.2f %%\n", qcom_dsp_prof_get_hvx_utilization(data));
+		mvprintw(4, 0, "HMX Utiliziation       : %.2f %%\n", qcom_dsp_prof_get_hmx_utilization(data));
 		mvprintw(6, 0, "-------------------------------------------------\n");
 		refresh();
 		sleep(1);

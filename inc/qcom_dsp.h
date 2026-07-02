@@ -37,34 +37,15 @@
 #define QCOM_DSP_H_
 
 #include "qcom_dsp_types.h"
-#include "remote.h"
-#include "rpcmem.h"
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <string.h>
-
-struct sysmon_query_prof_data {
-    float q6_utilization;    // avg effective q6 clock with respect to max q6 clock. (%)
-    unsigned int q6_clock;   // avg q6 clock. (KHz)
-    float reserved0;         // Reserved field
-    float hvx_utilization;   // avg HVX utilization with respect to max q6 clock. (%)
-    float hmx_utilization;   // avg HMX utilization with respect to max q6 clock. (%)
-    float reserved1;         // Reserved field
-    float reserved2;         // Reserved field
-    float reserved3;         // Reserved field
-    float reserved4;         // Reserved field
-    float reserved5;         // Reserved field
-    float reserved6;         // Reserved field
-    float reserved7;         // Reserved field
-    float reserved8;         // Reserved field
-    float reserved9;         // Reserved field
-};
 
 struct qcom_dsp_ctx *qcom_dsp_open(enum DspDomainId domain_id);
 
 struct sysmon_query_prof_data *qcom_dsp_get_prof_data(struct qcom_dsp_ctx *ctx, int *no_metrics);
+
+float        qcom_dsp_prof_get_q6_utilization(const struct sysmon_query_prof_data *data);
+unsigned int qcom_dsp_prof_get_q6_clock(const struct sysmon_query_prof_data *data);
+float        qcom_dsp_prof_get_hvx_utilization(const struct sysmon_query_prof_data *data);
+float        qcom_dsp_prof_get_hmx_utilization(const struct sysmon_query_prof_data *data);
 
 void qcom_dsp_close(struct qcom_dsp_ctx *ctx);
 
