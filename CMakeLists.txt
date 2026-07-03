@@ -28,6 +28,7 @@ include(GNUInstallDirs)
 
 add_library(qcnpuperf SHARED
     src/qcom_dsp.c
+    src/qcom_dsp_arch.c
     src/dspquery_stub.c
 )
 
@@ -118,5 +119,6 @@ install(FILES
 
 install(FILES
     inc/qcom_dsp.h
+    inc/qcom_dsp_types.h
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
